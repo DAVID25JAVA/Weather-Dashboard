@@ -139,7 +139,7 @@ const CurrentWeatherPage = ({
         </div>
       </div>
 
-      {/* ── Individual Stats Grid ─────────────────────────────────────────── */}
+      {/* Individual Stats Grid  */}
       {loading ? (
         <SkeletonGrid />
       ) : (
@@ -311,8 +311,8 @@ const CurrentWeatherPage = ({
         )}
       </div>
 
-      {/* ── Hourly Charts ─────────────────────────────────────────────────── */}
-      <div>
+      {/* ── Hourly Charts */}
+      <div className="">
         <h2 className="font-display font-semibold text-sky-300 text-sm mb-3 tracking-widest uppercase">
           Hourly Charts — {selectedDate}
         </h2>

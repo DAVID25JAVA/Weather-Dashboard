@@ -61,9 +61,9 @@ const ZoomableChart = ({
       </div>
 
       {/* Scrollable chart area */}
-      <div ref={scrollRef} className="chart-scroll">
+      <div className="w-full overflow-x-auto overflow-hidden" >
         <div style={{ width: chartWidth, height }}>
-          <ResponsiveContainer width="100%" height="100%">
+          <ResponsiveContainer width="100%" height={300}>
             {React.cloneElement(children, {
               data,
               margin: { top: 5, right: 20, left: 0, bottom: 5 },
