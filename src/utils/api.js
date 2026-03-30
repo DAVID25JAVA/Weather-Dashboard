@@ -2,7 +2,7 @@
 
 const BASE_WEATHER = "https://api.open-meteo.com/v1";
 const BASE_AIR = "https://air-quality-api.open-meteo.com/v1";
-const BASE_GEO = "https://geocoding-api.open-meteo.com/v1";
+const BASE_ARCHIVE = "https://archive-api.open-meteo.com/v1";
 
 // WMO Weather code → description + emoji
 export const WMO_CODES = {
@@ -147,7 +147,7 @@ export const fetchHistoricalWeather = async (lat, lon, startDate, endDate) => {
     end_date: endDate,
   });
 
-  const res = await fetch(`${BASE_WEATHER}/archive?${params}`);
+  const res = await fetch(`${BASE_ARCHIVE}/archive?${params}`);
   console.log("History API--->", res);
   if (!res.ok) throw new Error("Historical weather API failed");
   return res.json();

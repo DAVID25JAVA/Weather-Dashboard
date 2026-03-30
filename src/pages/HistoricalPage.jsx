@@ -46,8 +46,15 @@ const HistoricalPage = ({
     if (diff < 1) return setError("End date must be after start date.");
     if (diff > MAX_DAYS)
       return setError("Maximum range is 2 years (730 days).");
-    if (histEnd > format(new Date(), "yyyy-MM-dd"))
-      return setError("End date cannot be in the future.");
+
+    // if (histEnd > format(new Date(), "yyyy-MM-dd"))
+    //   return setError("End date cannot be in the future.");
+    const maxArchiveDate = format(subDays(new Date(), 5), "yyyy-MM-dd");
+    // In handleApply:
+    if (histEnd > maxArchiveDate)
+      return setError("Archive data is only available up to 5 days ago.");
+    // On the End Date input:
+    // max = { maxArchiveDate };
     setError("");
     loadPage2();
   };
@@ -153,7 +160,7 @@ const HistoricalPage = ({
             <input
               type="date"
               value={histEnd}
-              max={format(new Date(), "yyyy-MM-dd")}
+              max={format(subDays(new Date(), 5), "yyyy-MM-dd")}
               min={histStart}
               onChange={(e) => setHistEnd(e.target.value)}
               className="bg-sky-950 border border-sky-600/40 rounded-xl px-3 py-2 text-sky-200

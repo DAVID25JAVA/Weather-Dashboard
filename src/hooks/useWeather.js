@@ -27,7 +27,9 @@ export const useWeather = () => {
   const [histStart, setHistStart] = useState(
     format(subDays(new Date(), 30), "yyyy-MM-dd")
   );
-  const [histEnd, setHistEnd] = useState(today());
+  const [histEnd, setHistEnd] = useState(
+    format(subDays(new Date(), 5), "yyyy-MM-dd")
+  );
   const [histWeather, setHistWeather] = useState(null);
   const [histAQ, setHistAQ] = useState(null);
   const [loadingPage2, setLoadingPage2] = useState(false);
@@ -92,7 +94,6 @@ export const useWeather = () => {
     } catch (e) {
       console.error("Page2 fetch error", e);
       console.log(e);
-      
     } finally {
       setLoadingPage2(false);
     }

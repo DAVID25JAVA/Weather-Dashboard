@@ -5,8 +5,6 @@ import CurrentWeatherPage from "./pages/CurrentWeatherPage";
 import HistoricalPage from "./pages/HistoricalPage";
 
 const App = () => {
-   
-
   const {
     cityName,
     locError,
@@ -28,18 +26,7 @@ const App = () => {
   return (
     <div className="min-h-screen bg-sky-950 text-sky-100">
       {/* Background grid + gradient */}
-      <div
-        className="fixed inset-0 pointer-events-none z-0"
-        // style={{
-        //   background: "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(21,101,192,0.25) 0%, transparent 70%)",
-        //   backgroundImage: `
-        //     radial-gradient(ellipse 80% 60% at 50% 0%, rgba(21,101,192,0.25) 0%, transparent 70%),
-        //     linear-gradient(rgba(33,150,243,0.03) 1px, transparent 1px),
-        //     linear-gradient(90deg, rgba(33,150,243,0.03) 1px, transparent 1px)
-        //   `,
-        //   backgroundSize: "100% 100%, 40px 40px, 40px 40px",
-        // }}
-      />
+      <div className="fixed inset-0 pointer-events-none z-0" />
 
       <div className="relative z-10">
         <Navbar cityName={cityName} locError={locError} />
