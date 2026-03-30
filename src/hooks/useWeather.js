@@ -85,10 +85,14 @@ export const useWeather = () => {
           histEnd
         ),
       ]);
+      console.log("hw, haq--->", hw, haq);
+
       setHistWeather(hw);
       setHistAQ(aggregateAQDaily(haq));
     } catch (e) {
       console.error("Page2 fetch error", e);
+      console.log(e);
+      
     } finally {
       setLoadingPage2(false);
     }

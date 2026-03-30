@@ -128,8 +128,6 @@ const HistoricalPage = ({
     );
   };
 
-  console.log("His end Date-->", histEnd);
-
   return (
     <div className="space-y-6 animate-fade-in">
       {/* ── Date Range Picker ───────────────────────────────────────────── */}
