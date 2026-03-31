@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   LineChart,
   Line,
@@ -23,6 +23,7 @@ import {
   getAQILabel,
 } from "../utils/api";
 import { format, parseISO, isValid } from "date-fns";
+import Loader from "../components/Loader";
 
 // ── Shared axis / grid styles ─────────────────────────────────────────────────
 const AXIS_STYLE = {
@@ -40,10 +41,21 @@ const CurrentWeatherPage = ({
   setSelectedDate,
 }) => {
   const [tempUnit, setTempUnit] = useState("C"); // C | F
+  const [showLoader, setShowLoader] = useState(true);
   const cvt = (v) =>
     tempUnit === "F" ? celsiusToFahrenheit(v) : Math.round(v);
 
-  // ── Daily summary ──────────────────────────────────────────────────────────
+  useEffect(() => {
+  const timer = setTimeout(() => {
+    setShowLoader(false);
+  }, 3000);
+
+  return () => clearTimeout(timer);
+  }, []);
+  
+ 
+
+  // ── Daily summary 
   const daily = weather?.daily;
   const current = weather?.current;
   const hourly = weather?.hourly;
@@ -54,7 +66,7 @@ const CurrentWeatherPage = ({
   const aqiVal = aqHourly?.european_aqi?.find((v) => v != null);
   const aqiInfo = getAQILabel(aqiVal);
 
-  // ── Build hourly chart data ────────────────────────────────────────────────
+  // ── Build hourly chart data 
   const hourlyData = hourly
     ? hourly.time.map((t, i) => ({
         time: formatHour(t),
@@ -80,10 +92,14 @@ const CurrentWeatherPage = ({
         pm2_5: aqHourly.pm2_5[i],
       }))
     : [];
+  
+    if (showLoader) {
+  return <Loader />;
+}
 
   return (
     <div className="space-y-6 animate-fade-in">
-      {/* ── Date Picker + Weather Header ─────────────────────────────────── */}
+      {/* ── Date Picker + Weather Header  */}
       <div className="glass rounded-2xl p-5 border border-sky-500/20">
         <div className="flex flex-wrap items-start justify-between gap-4">
           {/* Left: icon + summary */}
